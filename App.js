@@ -66,6 +66,7 @@ function Roll() {
           <TextInput
             style={styles.input}
             onChangeText={text => setDimensions(text)}
+            defaultValue={dimensions.toString()}
             value={dimensions}
             keyboardType='number-pad'
             />
