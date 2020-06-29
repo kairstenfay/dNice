@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -29,11 +30,18 @@ const styles = StyleSheet.create({
   },
 
   dimensionContainer: {
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   displayText: {
     fontSize: 18,
+  },
+
+  input: {
+    paddingHorizontal: 10,
+    borderColor: 'grey',
+    borderWidth: 1
   },
 
   resultContainer: {
@@ -43,7 +51,7 @@ const styles = StyleSheet.create({
 })
 
 function Roll() {
-  const [dimensions] = useState(20)
+  const [dimensions, setDimensions] = useState(20)
   const [result, setResult] = useState()
 
   return (
@@ -52,6 +60,17 @@ function Roll() {
         <Text style={styles.displayText}>
           Rolling d{dimensions}
         </Text>
+        <View>
+          <Text>
+            Modify:
+          </Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={text => setDimensions(text)}
+            value={dimensions}
+            keyboardType='number-pad'
+            />
+        </View>
       </View>
       <TouchableOpacity
         style={styles.button}
