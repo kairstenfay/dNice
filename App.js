@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: '#444',
-    margin: 20,
-    padding: 10,
+    marginVertical: 50,
+    padding: 20,
   },
 
   buttonText: {
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
 
   resultContainer: {
     alignItems: 'center',
-    padding: 50,
   }
 })
 
