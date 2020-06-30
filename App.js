@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -30,6 +31,18 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
 
+  dieContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 50,
+  },
+
+  dieImage: {
+    width: 100,
+    height: 110,
+  },
+
   dimensionContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -49,6 +62,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 })
+
+function Die(props) {
+  // Image paths must be defined statically
+  let icon
+  switch (Number(props.dimensions)) {
+    case 4:
+      icon = require('./img/noun_d4.png')
+      break
+    case 6:
+      icon = require('./img/noun_d6.png')
+      break
+    case 8:
+      icon = require('./img/noun_d8.png')
+      break
+    case 10:
+      icon = require('./img/noun_d10.png')
+      break
+    case 12:
+      icon = require('./img/noun_d12.png')
+      break
+    case 20:
+      icon = require('./img/noun_d20.png')
+      break
+    default:
+      return null
+  }
+
+  return (
+    <Image source={icon}
+      style={styles.dieImage} />
+  )
+}
+
 
 function Roll() {
   const [dimensions, setDimensions] = useState('20')
@@ -72,6 +118,9 @@ function Roll() {
             keyboardType='number-pad'
             />
         </View>
+      </View>
+      <View style={styles.dieContainer}>
+        <Die dimensions={dimensions} />
       </View>
       <TouchableOpacity
         style={styles.button}
