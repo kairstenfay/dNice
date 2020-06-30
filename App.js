@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 })
 
 function Roll() {
-  const [dimensions, setDimensions] = useState(20)
+  const [dimensions, setDimensions] = useState('20')
   const [result, setResult] = useState()
 
   return (
