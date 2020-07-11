@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
-  Image,
+  Animated,
+  PanResponder,
   Text,
   TextInput,
   TouchableOpacity,
@@ -36,7 +37,7 @@ function Die(props) {
   }
 
   return (
-    <Image source={icon}
+    <Animated.Image source={icon}
       style={styles.dieImage} />
   )
 }
@@ -45,6 +46,19 @@ function Die(props) {
 function Roll() {
   const [dimensions, setDimensions] = useState('20')
   const [result, setResult] = useState()
+  const pan = useRef(new Animated.ValueXY()).current
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([
+        null,
+        { dx: pan.x, dy: pan.y }
+      ]),
+      onPanResponderRelease: () => {
+        Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start()
+      }
+    })
+  ).current
 
   return (
     <View>
@@ -65,9 +79,16 @@ function Roll() {
             />
         </View>
       </View>
-      <View style={styles.dieContainer}>
-        <Die dimensions={dimensions} />
-      </View>
+      <Animated.View
+        style={{
+          transform: [{ translateX: pan.x }, { translateY: pan.y }]
+        }}
+        {...panResponder.panHandlers}
+        >
+          <View style={styles.dieContainer}>
+            <Die dimensions={dimensions} />
+          </View>
+      </Animated.View>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
