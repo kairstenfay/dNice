@@ -53,8 +53,8 @@ function Roll() {
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event([
         null,
-        { dx: pan.x, dy: pan.y }
-      ]),
+        { dx: pan.x, dy: pan.y },
+      ], {}),
       onPanResponderRelease: () => {
         Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start()
       }
