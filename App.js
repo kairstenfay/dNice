@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import {
   Animated,
+  Image,
   PanResponder,
   Text,
   TextInput,
@@ -37,7 +38,7 @@ function Die(props) {
   }
 
   return (
-    <Animated.Image source={icon}
+    <Image source={icon}
       style={styles.dieImage} />
   )
 }
