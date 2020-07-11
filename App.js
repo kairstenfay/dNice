@@ -61,6 +61,12 @@ function Roll() {
     })
   ).current
 
+
+  const rollDie = () => {
+    setResult(Math.floor(Math.random() * dimensions) + 1)
+  }
+
+
   return (
     <View>
       <View style={styles.dimensionContainer}>
@@ -91,9 +97,7 @@ function Roll() {
       </Animated.View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => {
-          setResult(Math.floor(Math.random() * dimensions) + 1)
-        }}
+        onPress={() => rollDie()}
         >
         <Text style={styles.buttonText}>
           ROLL
