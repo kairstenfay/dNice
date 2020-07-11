@@ -56,7 +56,9 @@ function Roll() {
         { dx: pan.x, dy: pan.y },
       ], {}),
       onPanResponderRelease: () => {
-        Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start()
+        Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start(
+          ({ finished }) => rollDie()
+        )
       }
     })
   ).current
