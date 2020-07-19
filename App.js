@@ -3,12 +3,12 @@ import {
   Animated,
   PanResponder,
   Text,
-  TextInput,
   View,
 } from 'react-native';
 import { styles } from './components/styles'
 import Die from './components/Die'
 import RollButton from './components/RollButton'
+import UserControls from './components/UserControls'
 
 
 /**
@@ -16,29 +16,6 @@ import RollButton from './components/RollButton'
  */
 function rollDie(dimensions) {
   return (Math.floor(Math.random() * dimensions) + 1).toString()
-}
-
-const UserControls = (props) => {
-  return (
-    <>
-      <View style={styles.dimensionContainer}>
-        <Text style={styles.displayText}>
-          Rolling d{props.dimensions}
-        </Text>
-      </View>
-      <View>
-        <Text>
-          Modify:
-        </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => props.setDimensions(text)}
-          defaultValue={props.dimensions.toString()}
-          keyboardType='number-pad'
-          />
-      </View>
-    </>
-  )
 }
 
 const DraggableDie = (props) => {
