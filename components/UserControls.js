@@ -44,17 +44,7 @@ export default function UserControls(props) {
             Rolling d{props.dimensions}
           </Text>
         </View>
-        <View>
-          <Text>
-            Modify:
-          </Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={text => props.setDimensions(text)}
-            defaultValue={props.dimensions.toString()}
-            keyboardType='number-pad'
-            />
-        </View>
+
         <DiceBag setDimensions={props.setDimensions} />
       </>
     )
