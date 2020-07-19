@@ -11,6 +11,13 @@ import { styles } from './components/styles'
 import RollButton from './components/RollButton'
 
 
+/**
+ * Returns the string of the value of a rolled die of given *n* dimensions.
+ */
+function rollDie(dimensions) {
+  return (Math.floor(Math.random() * dimensions) + 1).toString()
+}
+
 function Die(props) {
   // Image paths must be defined statically
   let icon
@@ -116,13 +123,6 @@ function Roll() {
   )
 }
 
-
-/**
- * Returns the value of a rolled die of given *n* dimensions.
- */
-function rollDie(dimensions) {
-  return Math.floor(Math.random() * dimensions) + 1
-}
 
 
 export default function App() {
