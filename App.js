@@ -6,6 +6,7 @@ import {
 import { styles } from './components/styles'
 import { rollDie } from './utils'
 import DraggableDie from './components/DraggableDie'
+import Result from './components/Result'
 import RollButton from './components/RollButton'
 import UserControls from './components/UserControls'
 
@@ -21,11 +22,7 @@ function Roll() {
         dimensions={dimensions}
         onRelease={() => setResult(rollDie(dimensions))}
         />
-      <View style={styles.resultContainer}>
-        <Text style={styles.displayText}>
-          {result ? `You rolled ${result}!` : null }
-        </Text>
-      </View>
+      <Result result={result} />
       <RollButton onPress={() => setResult(rollDie(dimensions))} />
     </View>
   )
