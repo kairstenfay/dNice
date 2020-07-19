@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
 
   resultContainer: {
     alignItems: 'center',
+    height: '50'
   }
 })
 
