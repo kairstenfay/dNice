@@ -66,10 +66,9 @@ const UserControls = (props) => {
   )
 }
 
-function Roll() {
-  const [dimensions, setDimensions] = useState('20')
-  const [result, setResult] = useState()
+const DraggableDie = (props) => {
   const pan = useRef(new Animated.ValueXY()).current
+
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
@@ -79,38 +78,49 @@ function Roll() {
       ], {}),
       onPanResponderRelease: () => {
         Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start(
-          ({ finished }) => rollDie()
+          ({ finished }) => props.setResult(rollDie(props.dimensions))
         )
       }
     })
   ).current
 
-
-  const rollDie = () => {
-    setResult(Math.floor(Math.random() * dimensions) + 1)
-  }
-
   return (
-    <View>
-      <UserControls dimensions={dimensions} setDimensions={setDimensions} />
-      <Animated.View
+    <Animated.View
         style={{
           transform: [{ translateX: pan.x }, { translateY: pan.y }]
         }}
         {...panResponder.panHandlers}
         >
           <View style={styles.dieContainer}>
-            <Die dimensions={dimensions} />
+            <Die dimensions={props.dimensions} />
           </View>
-      </Animated.View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => rollDie()}
-        >
-        <Text style={styles.buttonText}>
-          ROLL
-        </Text>
-      </TouchableOpacity>
+    </Animated.View>
+  )
+}
+
+const RollButton = (props) => {
+  return (
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => props.setResult(rollDie(props.dimensions))}
+      >
+      <Text style={styles.buttonText}>
+        ROLL
+      </Text>
+    </TouchableOpacity>
+  )
+}
+
+
+function Roll() {
+  const [dimensions, setDimensions] = useState('20')
+  const [result, setResult] = useState()
+
+  return (
+    <View>
+      <UserControls dimensions={dimensions} setDimensions={setDimensions} />
+      <DraggableDie dimensions={dimensions} setResult={setResult} />
+      <RollButton dimensions={dimensions} setResult={setResult} />
       <View style={styles.resultContainer}>
         <Text style={styles.displayText}>
           {result ? `You rolled ${result}!` : null }
@@ -120,6 +130,13 @@ function Roll() {
   )
 }
 
+
+/**
+ * Returns the value of a rolled die of given *n* dimensions.
+ */
+function rollDie(dimensions) {
+  return Math.floor(Math.random() * dimensions) + 1
+}
 
 
 export default function App() {
