@@ -50,13 +50,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 
-  input: {
-    paddingHorizontal: 10,
-    borderColor: 'grey',
-    borderWidth: 1,
-    width: 50
-  },
-
   miniDieImage: {
     width: 50,
     height: 55,
