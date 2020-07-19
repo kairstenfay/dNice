@@ -3,12 +3,13 @@ import {
     Image,
     Text,
     TextInput,
+    TouchableOpacity,
     View,
 } from 'react-native'
 import { styles } from './styles'
 
 
-const DiceBag = () => {
+const DiceBag = (props) => {
     // Per React docs, Image paths must be defined statically
     const icons = {
         4: require('../img/noun_d4.png'),
@@ -22,10 +23,14 @@ const DiceBag = () => {
     return (
         <View>
             { Object.keys(icons).map(d =>
-                <Image key={d}
-                    source={icons[d]}
-                    style={styles.miniDieImage}
-                    />
+                <TouchableOpacity
+                    onPress={() => props.setDimensions(d)}
+                    >
+                    <Image key={d}
+                        source={icons[d]}
+                        style={styles.miniDieImage}
+                        />
+                </TouchableOpacity>
             )}
         </View>
     )
@@ -50,7 +55,7 @@ export default function UserControls(props) {
             keyboardType='number-pad'
             />
         </View>
-        <DiceBag />
+        <DiceBag setDimensions={props.setDimensions} />
       </>
     )
   }
