@@ -21,7 +21,7 @@ const DiceBag = (props) => {
     }
 
     return (
-        <View>
+        <View style={styles.diceBag}>
             { Object.keys(icons).map(d =>
                 <TouchableOpacity
                     onPress={() => props.setDimensions(d)}
