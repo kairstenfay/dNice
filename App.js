@@ -15,18 +15,18 @@ function Roll() {
   const [result, setResult] = useState()
 
   return (
-    <View>
+    <View style={styles.app}>
       <UserControls dimensions={dimensions} setDimensions={setDimensions} />
       <DraggableDie
         dimensions={dimensions}
         onRelease={() => setResult(rollDie(dimensions))}
         />
-      <RollButton onPress={() => setResult(rollDie(dimensions))} />
       <View style={styles.resultContainer}>
         <Text style={styles.displayText}>
           {result ? `You rolled ${result}!` : null }
         </Text>
       </View>
+      <RollButton onPress={() => setResult(rollDie(dimensions))} />
     </View>
   )
 }
