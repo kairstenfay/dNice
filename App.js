@@ -5,10 +5,10 @@ import {
   PanResponder,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { styles } from './components/styles'
+import RollButton from './components/RollButton'
 
 
 function Die(props) {
@@ -98,20 +98,6 @@ const DraggableDie = (props) => {
   )
 }
 
-const RollButton = (props) => {
-  return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={() => props.setResult(rollDie(props.dimensions))}
-      >
-      <Text style={styles.buttonText}>
-        ROLL
-      </Text>
-    </TouchableOpacity>
-  )
-}
-
-
 function Roll() {
   const [dimensions, setDimensions] = useState('20')
   const [result, setResult] = useState()
@@ -120,7 +106,7 @@ function Roll() {
     <View>
       <UserControls dimensions={dimensions} setDimensions={setDimensions} />
       <DraggableDie dimensions={dimensions} setResult={setResult} />
-      <RollButton dimensions={dimensions} setResult={setResult} />
+      <RollButton onPress={() => setResult(rollDie(dimensions))} />
       <View style={styles.resultContainer}>
         <Text style={styles.displayText}>
           {result ? `You rolled ${result}!` : null }
