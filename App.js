@@ -68,13 +68,14 @@ function Roll() {
     setResult(Math.floor(Math.random() * dimensions) + 1)
   }
 
-
-  return (
-    <View>
-      <View style={styles.dimensionContainer}>
-        <Text style={styles.displayText}>
-          Rolling d{dimensions}
-        </Text>
+  const UserControls = () => {
+    return (
+      <>
+        <View style={styles.dimensionContainer}>
+          <Text style={styles.displayText}>
+            Rolling d{dimensions}
+          </Text>
+        </View>
         <View>
           <Text>
             Modify:
@@ -86,7 +87,14 @@ function Roll() {
             keyboardType='number-pad'
             />
         </View>
-      </View>
+      </>
+    )
+  }
+
+
+  return (
+    <View>
+      <UserControls />
       <Animated.View
         style={{
           transform: [{ translateX: pan.x }, { translateY: pan.y }]
