@@ -43,6 +43,28 @@ function Die(props) {
   )
 }
 
+const UserControls = (props) => {
+  return (
+    <>
+      <View style={styles.dimensionContainer}>
+        <Text style={styles.displayText}>
+          Rolling d{props.dimensions}
+        </Text>
+      </View>
+      <View>
+        <Text>
+          Modify:
+        </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={text => props.setDimensions(text)}
+          defaultValue={props.dimensions.toString()}
+          keyboardType='number-pad'
+          />
+      </View>
+    </>
+  )
+}
 
 function Roll() {
   const [dimensions, setDimensions] = useState('20')
@@ -68,33 +90,9 @@ function Roll() {
     setResult(Math.floor(Math.random() * dimensions) + 1)
   }
 
-  const UserControls = () => {
-    return (
-      <>
-        <View style={styles.dimensionContainer}>
-          <Text style={styles.displayText}>
-            Rolling d{dimensions}
-          </Text>
-        </View>
-        <View>
-          <Text>
-            Modify:
-          </Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={text => setDimensions(text)}
-            defaultValue={dimensions.toString()}
-            keyboardType='number-pad'
-            />
-        </View>
-      </>
-    )
-  }
-
-
   return (
     <View>
-      <UserControls />
+      <UserControls dimensions={dimensions} setDimensions={setDimensions} />
       <Animated.View
         style={{
           transform: [{ translateX: pan.x }, { translateY: pan.y }]
