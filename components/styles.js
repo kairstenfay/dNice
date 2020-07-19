@@ -51,6 +51,11 @@ const styles = StyleSheet.create({
     width: 50
   },
 
+  miniDieImage: {
+    width: 50,
+    height: 55,
+  },
+
   resultContainer: {
     alignItems: 'center',
   }
