@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
 
+  diceBag: {
+    flex: 1,
+    flexDirection: 'row',
+
+  },
+
   dieContainer: {
     flex: 1,
     alignItems: 'center',
