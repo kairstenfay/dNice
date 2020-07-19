@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   app: {
     flex: 1,
     paddingVertical: 20,
+    justifyContent: 'space-between',
   },
 
   container: {
@@ -46,11 +47,6 @@ const styles = StyleSheet.create({
     height: 110,
   },
 
-  dimensionContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-
   displayText: {
     fontSize: 18,
   },
@@ -63,6 +59,10 @@ const styles = StyleSheet.create({
   resultContainer: {
     alignItems: 'center',
     height: '50'
+  },
+
+  userControls: {
+    paddingVertical: 30,
   }
 })
 
