@@ -23,7 +23,7 @@ const DiceBag = (props) => {
     return (
         <View style={styles.diceBag}>
             { Object.keys(icons).map(d =>
-                <TouchableOpacity
+                <TouchableOpacity key={d}
                     onPress={() => props.setDimensions(d)}
                     >
                     <Image key={d}
