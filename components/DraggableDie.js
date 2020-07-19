@@ -15,10 +15,11 @@ export default function DraggableDie(props) {
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event([
         null,
-        { dx: pan.x, dy: pan.y },
-      ], {
-        useNativeDriver: false,
-      }),
+        {
+          dx: pan.x,
+          dy: pan.y
+        },
+      ]),
       onPanResponderRelease: () => {
         Animated.spring(pan,
           {
@@ -33,9 +34,7 @@ export default function DraggableDie(props) {
 
   return (
     <Animated.View
-        style={{
-          transform: [{ translateX: pan.x }, { translateY: pan.y }]
-        }}
+        style={[pan.getLayout()]}
         {...panResponder.panHandlers}
         >
           <View style={styles.dieContainer}>
