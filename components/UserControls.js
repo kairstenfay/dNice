@@ -38,14 +38,12 @@ const DiceBag = (props) => {
 
 export default function UserControls(props) {
     return (
-      <>
-        <View style={styles.dimensionContainer}>
-          <Text style={styles.displayText}>
-            Rolling d{props.dimensions}
-          </Text>
-        </View>
+      <View style={styles.userControls}>
+        <Text style={styles.displayText}>
+          Rolling d{props.dimensions}
+        </Text>
 
         <DiceBag setDimensions={props.setDimensions} />
-      </>
+      </View>
     )
   }
