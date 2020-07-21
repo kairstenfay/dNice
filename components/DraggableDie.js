@@ -15,14 +15,17 @@ export default function DraggableDie(props) {
     Animated.spring(pan, {
       toValue: { x: 0, y: 0 },
       useNativeDriver: false,
-    }).start(({ finished }) => props.onRelease())
+    }).start()
   )
 
   const startTwirl = () => (
     Animated.timing(twirl, {
       toValue: 360,
-    }).start(({ finished }) => twirl.resetAnimation())
-  )
+    }).start(({ finished }) => {
+      twirl.resetAnimation()
+      props.onRelease()
+    }
+  ))
 
 
   const rotateInterpolate = twirl.interpolate({
