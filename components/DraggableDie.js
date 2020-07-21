@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import {
     Animated,
     PanResponder,
@@ -10,6 +10,17 @@ import Die from './Die'
 export default function DraggableDie(props) {
   const pan = useRef(new Animated.ValueXY()).current
   const twirl = useRef(new Animated.Value(0)).current
+
+  /* Because Animated objects mount before JavaScript is run, Animated objects
+  won't detect updates in state. Therefore, use this hack to listen for when an
+  animation reaches the end (value 360) before triggering the state reading
+  function via a callback */
+  const twirlListenerId = () => twirl.addListener((dimensions) => {
+    if (dimensions.value === 360) {
+      props.onRelease()
+    }})
+
+  useEffect(() => { twirlListenerId() }, [twirlListenerId])
 
   const startSpring = () => (
     Animated.spring(pan, {
@@ -23,7 +34,6 @@ export default function DraggableDie(props) {
       toValue: 360,
     }).start(({ finished }) => {
       twirl.resetAnimation()
-      props.onRelease()
     }
   ))
 
