@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Text,
   View,
 } from 'react-native';
 import { styles } from './components/styles'
@@ -10,8 +9,7 @@ import Result from './components/Result'
 import RollButton from './components/RollButton'
 import UserControls from './components/UserControls'
 
-
-function Roll() {
+export default function App() {
   const [dimensions, setDimensions] = useState('20')
   const [result, setResult] = useState()
 
@@ -26,14 +24,4 @@ function Roll() {
       <RollButton onPress={() => setResult(rollDie(dimensions))} />
     </View>
   )
-}
-
-
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Roll />
-    </View>
-  );
 }

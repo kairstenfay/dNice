@@ -2,9 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import {
     Animated,
     PanResponder,
-    View,
 } from 'react-native'
-import { styles } from './styles'
 import Die from './Die'
 
 export default function DraggableDie(props) {
@@ -71,9 +69,7 @@ export default function DraggableDie(props) {
         style={[pan.getLayout(), animatedStyles]}
         {...panResponder.panHandlers}
         >
-          <View style={styles.dieContainer}>
-            <Die dimensions={props.dimensions} />
-          </View>
+        <Die dimensions={props.dimensions} />
     </Animated.View>
   )
 }

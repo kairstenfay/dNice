@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     Image,
+    View,
 } from 'react-native'
 import { styles } from './styles'
 
@@ -31,7 +32,9 @@ export default function Die(props) {
     }
 
     return (
-      <Image source={icon}
-        style={styles.dieImage} />
+      <View style={styles.dieContainer}>
+        <Image source={icon}
+          style={styles.dieImage} />
+      </View>
     )
 }

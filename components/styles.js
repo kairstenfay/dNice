@@ -5,13 +5,8 @@ const styles = StyleSheet.create({
   app: {
     flex: 1,
     paddingVertical: 20,
-    justifyContent: 'space-between',
-  },
-
-  container: {
-    flex: 1,
-    justifyContent: 'center',
     paddingHorizontal: 10,
+    justifyContent: 'space-between',
     backgroundColor: 'ghostwhite',
   },
 
